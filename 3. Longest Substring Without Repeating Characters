@@ -1,0 +1,26 @@
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        unsigned int start = 0, end = 0;
+        unsigned int iter_1 = 0, iter_2 = 0;
+        unsigned int max_len = 0;
+        unsigned int size = s.size();
+        while(iter_2 < size) {
+            bool dup = false;
+            for(int i = iter_1; i < iter_2; ++i){
+                if(s[i] == s[iter_2]){
+                    dup = true;
+                    iter_1 = i+1;
+                    break;
+                }
+            }
+            if((dup == false) && (iter_2 - iter_1 + 1) > max_len){
+                max_len = (iter_2 - iter_1 + 1);
+            }
+            ++iter_2;
+        }
+        return max_len;
+        
+    }
+
+};
