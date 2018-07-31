@@ -24,3 +24,25 @@ public:
     }
 
 };
+
+
+/////////////////////////////////////////////////////
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        int pos_tab[128] = {0};
+        int last_dup = -1;
+        int max_len = 0;
+        fill(pos_tab, pos_tab+128, -1);
+        for(int iter = 0; iter < s.size(); iter++) {
+            if(pos_tab[s[iter]] > last_dup) {
+                last_dup = pos_tab[s[iter]];
+            }
+            pos_tab[s[iter]] = iter;
+            max_len = max(max_len, (iter - last_dup));
+        }
+        return max_len;
+        
+    }
+
+};
